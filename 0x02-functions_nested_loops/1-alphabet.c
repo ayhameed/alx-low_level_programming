@@ -1,4 +1,4 @@
-#include "maih.h"
+#include "main.h"
 
 /**
  * print_alphabets - Prints the alphabets in new line followed by \n
