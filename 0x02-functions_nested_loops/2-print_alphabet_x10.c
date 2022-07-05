@@ -5,12 +5,16 @@
 * followed by a newline
 */
 
-void print_alphabet_x10(void){
+void print_alphabet_x10(void)
+{
 	int i;
 	char c;
-	for (i=0; i<=10; i++){
-		c='a';
-		while (c<='z'){
+
+	for (i = 0; i <= 10; i++)
+	{
+		c ='a';
+		while (c <= 'z')
+		{
 			_putchar(c);
 			c++;
 		}
