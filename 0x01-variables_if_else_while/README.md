@@ -1,1 +1,1 @@
-if else while
+IF ELSE WHILE
