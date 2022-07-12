@@ -10,16 +10,18 @@
  */
 int main(void)
 {
-char c;
-int x;
+	int trand;
+	int count;
+	int total;
 
-srand(time(0));
-while (x <= 2645)
-{
-c = rand() % 128;
-x += c;
-putchar(c);
-}
-putchar(2772 - x);
-return (0);
+	srand(time(NULL));
+	for (count = 0, total = 2772; total > 122; count++)
+	{
+		trand = (rand() % 125) + 1;
+		printf("%c", trand);
+		total -= trand;
+	}
+	printf("%c", total);
+
+	return (0);
 }
