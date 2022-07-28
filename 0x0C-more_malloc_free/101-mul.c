@@ -1,106 +1,91 @@
-#include<string.h>
-#include "main.h"
+#include "holberton.h"
 
 /**
- * isnumber - checks if a string is a number
- * @s: pointer to string
- * Return: 1 if s is a number 0 otherwise
- */
-int isnumber(char *s)
+ * _puts - prints a string, followed by a new line,
+ * @str: pointer to the string to print
+ * Return: void
+*/
+
+
+void _puts(char *str)
 {
-	while (*s)
-	{
-		if (*s > 58 || *s < 48)
-			return (0);
-		s++;
-	}
-	return (1);
+int i = 0;
+while (str[i])
+{
+	_putchar(str[i]);
+	i++;
+}
+
 }
 
 /**
- * mul2 - multiply two numbers
- * @s1: first number
- * @s2: second number
- * Return: pointer to result
+ * _atoi - convert a string to an integer.
+ * @s: char type string
+ * Return: integer converted
  */
-char *mul2(char *s1, char *s2)
-{
-	int l1, l2, sum = 0, cry = 0, *res, i,
-	    j, n1, n2, r1 = 0, r2 = 0;
-	char *ans;
 
-	if (!isnumber(s1) || !isnumber(s2))
-		return (NULL);
-	l1 = strlen(s1);
-	l2 = strlen(s2);
-	res = malloc((l1 + l2) * sizeof(*res));
-	if (res == NULL)
-		return (NULL);
-	for (i = 0; i < l1 + l2; i++)
-		res[i] = 0;
-	for (i = l1 - 1; i >= 0; i--)
+int _atoi(const char *s)
+{
+    int sign = 1;
+	unsigned long int resp = 0, firstNum, i;
+
+	for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
 	{
-		n1 = s1[i] - '0';
-		r2 = 0;
-		cry = 0;
-		for (j = l2 - 1; j >= 0; j--)
+		if (s[firstNum] == '-')
 		{
-			n2 = s2[j] - '0';
-			sum = (n1 * n2) + res[r1 + r2] + cry;
-			res[r1 + r2] = sum % 10;
-			cry = sum / 10;
-			r2++;
+			sign *= -1;
 		}
-		if (cry > 0)
-			res[r1 + r2] += cry;
-		r1++;
 	}
-	i = l1 + l2 - 1;
-	while (res[i] == 0 && i >= 0)
-		i--;
-	if (i < 0)
-		return ("0");
-	ans = malloc(sizeof(*ans) * (i + 2));
-	for (j = 0; i >= 0; j++, i--)
-		ans[j] = res[i] + '0';
-	ans[j] = '\0';
-	return (ans);
+
+	for (i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
+	{
+		resp *= 10;
+		resp += (s[i] - 48);
+	}
+
+	return (sign * resp);
 }
 
 /**
- * print - prints a string
- * @s: string to print
+ * print_int - prints an integer.
+ * @n: int
+ * Return: 0
  */
-void print(char *s)
-{
-	int i = 0;
 
-	while (s[i])
-		_putchar(s[i++]);
-	_putchar('\n');
+void print_int(unsigned long int n)
+{
+
+unsigned  long int divisor = 1, i, resp;
+
+for (i = 0; n / divisor > 9; i++, divisor *= 10)
+;
+
+for (; divisor >= 1; n %= divisor, divisor /= 10)
+{
+	resp = n / divisor;
+	_putchar('0' + resp);
+}
+
 }
 
 /**
- * main - entry point
- * @argc: argument count
- * @argv: arguments array
- * Return: 0 success 98 error
+ * main - print the result of the multiplication, followed by a new line
+ * @argc: int
+ * @argv: list
+ * Return: 0
  */
-int main(int argc, char **argv)
-{
-	char *res;
 
-	if (argc != 3)
-	{
-		print("Error");
-		exit(98);
-	}
-	res = mul2(argv[1], argv[2]);
-	if (res == NULL)
-	{
-		print("Error");
-		exit(98);
-	}
-	print(res);
-	return (0);
+int main(int argc, char const *argv[])
+{
+(void)argc;
+
+if (argc != 3)
+{
+	_puts("Error ");
+	exit(98);
+}
+print_int(_atoi(argv[1]) * _atoi(argv[2]));
+_putchar('\n');
+
+return (0);
 }
