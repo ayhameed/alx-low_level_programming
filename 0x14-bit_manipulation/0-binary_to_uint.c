@@ -43,5 +43,4 @@ return (0);
 b++;
 }
 return (1);
-putchar('\n');
 }
