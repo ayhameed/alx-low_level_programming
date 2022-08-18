@@ -42,6 +42,6 @@ if (*b != '1' && *b != '0')
 return (0);
 b++;
 }
-putchar('\n');
 return (1);
+putchar('\n');
 }
